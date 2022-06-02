@@ -42,4 +42,15 @@ public class AirplaneResource {
         airplaneService.deleteAirplaneById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Airplane> updateAirplaneById (@PathVariable(value = "id")Integer id,
+                                                        @RequestBody Airplane newAirplane) throws ResourceNotFoundException{
+        Airplane updateAirplane = airplaneService.findAirplaneById(id).orElseThrow(() -> new ResourceNotFoundException("Id Not Found!"));
+        updateAirplane.setAirplaneType(newAirplane.getAirplaneType());
+        updateAirplane.setFlyingDistance(newAirplane.getFlyingDistance());
+
+        Airplane savedAirplane = airplaneService.saveAirplane(updateAirplane);
+        return ResponseEntity.ok(savedAirplane);
+    }
 }

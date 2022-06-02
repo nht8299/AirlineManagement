@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import com.example.demo.entity.Airplane;
 import com.example.demo.entity.Flight;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,5 +23,8 @@ public interface FlightRepository extends JpaRepository<Flight, String> {
     List<Flight> findFlightByDepartureGate(String departureGate);
 
     //13.	Cho biết các loại máy bay có thể thực hiện chuyến bay VN280.
+    @Query(value = "SELECT a.airplaneType FROM Airplane a WHERE a.flyingDistance > (SELECT f.distance FROM flight WHERE flightID like 'VN280'",nativeQuery = true)
+    List<String> selectAirplaneTypeCanFlyFlightIdVN280();
+
 
 }
