@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CertificateServiceImpl implements CertificateService{
@@ -20,6 +21,21 @@ public class CertificateServiceImpl implements CertificateService{
     public Certificate saveCertificate(Certificate certificate)
     {
         return certificateRepository.save(certificate);
+    }
+
+    @Override
+    public List<Certificate> getAll() {
+        return certificateRepository.findAll();
+    }
+
+    @Override
+    public Optional<Certificate> findCertificateById(Integer id) {
+        return certificateRepository.findById(id);
+    }
+
+    @Override
+    public void deleteCertificateById(Integer id) {
+        certificateRepository.deleteById(id);
     }
 
 

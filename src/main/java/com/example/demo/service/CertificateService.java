@@ -5,12 +5,17 @@ import com.example.demo.entity.Employee;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CertificateService {
     Certificate saveCertificate(Certificate certificate);
 
 
+    List<Certificate>getAll();
 
+    Optional<Certificate>findCertificateById(Integer id);
+
+    void deleteCertificateById(Integer id);
     //9.	Cho biết mã số của các phi công lái máy báy Boeing.
     public List<Certificate> findAllThePilotsWhoCanFlyATypeOfAirplane(String airplaneType);
 

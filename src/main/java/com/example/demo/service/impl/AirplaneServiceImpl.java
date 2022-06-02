@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AirplaneServiceImpl implements AirplaneService {
@@ -16,6 +17,26 @@ public class AirplaneServiceImpl implements AirplaneService {
     @Override
     public Airplane saveAirplane(Airplane airplane)
     {
+        return airplaneRepository.save(airplane);
+    }
+
+    @Override
+    public List<Airplane> getAll() {
+        return airplaneRepository.findAll();
+    }
+
+    @Override
+    public Optional<Airplane> findAirplaneById(Integer id) {
+        return airplaneRepository.findById(id);
+    }
+
+    @Override
+    public void deleteAirplaneById(Integer id) {
+        airplaneRepository.deleteById(id);
+    }
+
+    @Override
+    public Airplane saveAirPlane(Airplane airplane) {
         return airplaneRepository.save(airplane);
     }
 
